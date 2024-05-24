@@ -372,8 +372,7 @@ while dMax > dTol
           beta_new = double([sol_beta, 1-sol_beta]); 
           % This is to double check our lagrange multiplier (make the nbi equality constraints active)
           % This part is redundant. you can directly get it from above.
-                    % if you want to get normal for relaxed NLP you can either run
-          % this below.
+          % if you want to get normal for relaxed NLP you can either run the code (three lines) below.
           %[objsNew_e, n_groupsNew_e,properties_e,tStore_e, tElapsed_e] = ...
           %     f_MtoG_oNBI_2obj(weight, beta_new, normal, phi, f_o, f_k, icut, dim, n_dim, n_groupsNew);
           % properties(1, 4:5)=properties_e(1, 4:5);
@@ -553,55 +552,17 @@ while dMax > dTol
      end
   
 
-     filename = sprintf('xxx.mat',iter);
-     save(filename);
+
      tMainElapsed=toc(tMainStart);
      
  end
-  save('CS2_SDNBI_EJOR_final.mat');
+  save('CS2_SDNBI_final_run.mat');
   iter=iter+1; 
 end
 
 %% -----------------------------------------------------------------------
 %                 4. Evaluate final results and Save it
 % ------------------------------------------------------------------------
-
-PPoints_CS5_SDNBI = PPoints;
-z_final = PPoints(:,3:4);
-%f_u = [0.05263158, 1]; f_n = [1, 37];
-%z_final(:,1)=(f_n(1)-f_u(1))*z_final(:,1)+f_u(1);
-%z_final(:,2)=(f_n(2)-f_u(2))*z_final(:,2)+f_u(2);
-hv_CS5_SDNBI=approximate_hypervolume_ms(PPoints(:,3:4)',[1,1]')
-
-[ndf_index, df_index] = non_dominated_front(z_final(:,1:2)');
-PF_CS5_SDNBI = PPoints(ndf_index,:);
-
-
-crowding_dist=compute_crowding_distances(PPoints(:,3:4)');
-CD_CS5_SDNBI=crowding_dist;
-CD_stdv_CS5_SDNBI=std(CD_CS1_SDNBI(:,dim+1:end)');
-CD_avg_CS5_SDNBI =mean(CD_CS1_SDNBI(:,dim+1:end)');
-
-save('CS5_SDNBI_region_210217-R5-crowding_distance.mat');
-
-% For plotting ------
-hold off;
-plot(PPoints_CS1_oNBI(:,dim+1),PPoints_CS1_oNBI(:,dim+2),'o','MarkerEdgeColor',rgb('Gray'),'MarkerFaceColor',rgb('Gray'),'MarkerSize',6);
-hold on;
-plot(PF_CS1_oNBI(:,dim+1),PF_CS1_oNBI(:,dim+2),'o','MarkerEdgeColor',rgb('Gray'),'MarkerFaceColor',rgb('Gray'),'MarkerSize',6);
-plot( PF_CS1_SDNBI(:,3), PF_CS1_SDNBI(:,4),'o','MarkerEdgeColor','red','MarkerFaceColor',rgb('Gold'),'LineWidth',1,'MarkerSize',6);
-plot( PF_CS1_SD(:,3), PF_CS1_SD(:,4),'x','MarkerEdgeColor','blue','MarkerFaceColor',rgb('blue'),'LineWidth',1,'MarkerSize',6);
-plot( PF_CS1_mNBI(:,3), PF_CS1_mNBI(:,4),'^','MarkerEdgeColor','green','MarkerFaceColor',rgb('green'),'LineWidth',1,'MarkerSize',6);
-
-
-DM_CS1_SDNBI = compute_quality_pareto(PF_CS1_SDNBI(:,3:4), [1,1], [0,0]);
-DM_CS1_SD = compute_quality_pareto(PF_CS1_SD(:,3:4), [1,1], [0,0]);
-DM_CS1_mNBI = compute_quality_pareto(PF_CS1_mNBI(:,3:4), [1,1], [0,0]);
-DM_CS1_oNBI = compute_quality_pareto(PF_CS1_oNBI(:,3:4), [1,1], [0,0]);
-
-hv_CS1_SDNBI=approximate_hypervolume_ms(PF_CS1_SDNBI(:,3:4)',[1.1,1.1]');
-hv_CS1_SD=approximate_hypervolume_ms(PF_CS1_SD(:,3:4)',[1.1,1.1]');
-hv_CS1_mNBI=approximate_hypervolume_ms(PF_CS1_mNBI(:,3:4)',[1.1,1.1]');
-hv_CS1_oNBI=approximate_hypervolume_ms(PF_CS1_oNBI(:,3:4)',[1.1,1.1]');
+% Run main_Analysis_xx.m
 
 
