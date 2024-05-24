@@ -1,8 +1,8 @@
 # MOO-SDNBI
 
-# MATLAB-GAMS Optimization Project
+# Bi-Objective Optimisation Project
 
-This repository contains a MATLAB-based optimization project that interfaces with GAMS for solving optimization problems and uses QConvex for convex hull calculations. The project utilizes the GAMS-MATLAB package for interfacing between MATLAB and GAMS.
+This repository contains a MATLAB-based MOO optimization project that interfaces with GAMS for solving optimization problems and uses QConvex for convex hull calculations. The project utilizes the GAMS-MATLAB package for interfacing between MATLAB and GAMS.
 
 ## Prerequisites
 
