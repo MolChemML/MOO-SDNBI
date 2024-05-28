@@ -16,13 +16,12 @@ Before you can run the project, ensure you have the following software installed
 ## Repository Structure
 
 - `CSx_../`: Directory containing all the necessary MATLAB files for each benchmark problems.
-- `main_SDNBI_2obj_RF.m`: The main MATLAB script to start the SDNBI optimization process.
-- `CSx_../functions/`: Directory containing all the necessary MATLAB function files.
-- `CSx_../GAMS.m`: The GAMS-MATLAB interface class.
+- `CSx_../main_SDNBI_2obj_RF.m`: The main MATLAB script to start the SDNBI optimization process.
 - `CSx_../qconvex.exe`: QConvex executable for convex hull calculations.
-- `CSx_../data/`: Directory containing example data files (e.g., `PPoints_CS2_oNBI.mat`, `PF_CS2_oNBI.mat`, etc.).
+- `common_function/`: Directory containing all the necessary MATLAB common function files.
 - `README.md`: This readme file.
-
+- NOTE: If you want to compare mNBI method, SD algorithm, and SDNBI, we recommend to check case study 2 (CS2_SCH2).
+  
 ## Setup Instructions
 
 1. **Clone the Repository**:
@@ -31,22 +30,19 @@ Before you can run the project, ensure you have the following software installed
     cd yourrepository
     ```
 
-2. **Add Paths in MATLAB**:
-    Open MATLAB and add the necessary paths to the MATLAB environment:
-    ```matlab
-    addpath(genpath('functions'));
-    addpath(genpath('data'));
-    ```
+2. **Download GAMS**:
+   [Download/install GAMS and add the necessary paths to the MATLAB environment:](https://www.gams.com/)
+   
 
 3. **Install GAMS-MATLAB Interface**:
     Follow the [installation guide](https://gams-matlab.readthedocs.io/en/latest/) to set up the GAMS-MATLAB interface. Ensure `GAMS.m` is accessible in your MATLAB path.
 
 4. **Download and Setup QConvex**:
-    - Download `qconvex.exe` from [QHull](http://www.qhull.org/html/qconvex.htm).
+    - Download `qconvex.exe` from [QHull](http://www.qhull.org/html/qconvex.htm). NOTE: It is included in each folder already.
     - Place `qconvex.exe` in the CSxx directory of this project. 
 
 5. **Verify Data Files**:
-    Ensure all required data files (`PPoints_CS2_oNBI.mat`, `PF_CS2_oNBI.mat`, etc.) are available in the `data` directory.
+    Ensure all required data files (`PPoints_CS2_oNBI.mat`, `PF_CS2_oNBI.mat`, etc.) are available in each CSx_.. directory.
 
 ## Running the Project
 
@@ -64,11 +60,11 @@ This is the entry point for the project. It initializes parameters, sets up the 
 
 ### functions/
 
-- **f_MtoG_WS_2obj.m**: Function to handle specific GAMS-related operations.
+- **f_MtoG_xxx_2obj.m**: Function to handle specific GAMS-related operations.
 - **f_outer_test.m**: Function to perform outer approximation tests.
 - **generate_dummy.m**: Helper function to generate dummy points for convex hull calculations.
 - **convexHull_R1.m**: Function to compute the convex hull using QConvex.
-- **f_clusterParetoPoints.m**: Function to cluster Pareto points and manage subregions.
+- **f_clusterParetoPoints.m**: Function to cluster/devide Pareto points and manage subregions.
 
 ## Troubleshooting
 
